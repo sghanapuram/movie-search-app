@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme, { shallow } from 'enzyme';
-import MovieThumbnail from './components/MovieThumbnail';
+import MovieThumbnail from './MovieThumbnail';
 import Adapter from 'enzyme-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter });
@@ -37,6 +37,7 @@ describe('MovieThumbnail', () => {
     });
     it('renders movie results', () => {
         expect(wrapper.find('.movie-results').exists()).toEqual(true);
+        expect(wrapper.find('.no-data').exists()).toEqual(false);
         expect(wrapper.find('.movie-thumbnail').exists()).toEqual(true);
         expect(wrapper.find('.poster-section').exists()).toEqual(true);
         expect(wrapper.find('.movie-desc').exists()).toEqual(true);
@@ -51,5 +52,12 @@ describe('MovieThumbnail', () => {
     it('renders rating and review section', () => {
         expect(wrapper.find('WithStyles(ForwardRef(Rating))').exists()).toEqual(true);
         expect(wrapper.find('.review-count').text()).toEqual('4 reviews');
+    });
+    it('display no records found message when list is empty', () => {
+        wrapper.setProps({
+            list: []
+        })
+        expect(wrapper.find('.no-data').text()).toEqual('No Records Found');
+        expect(wrapper.find('.movie-results').exists()).toEqual(false);
     });
 });

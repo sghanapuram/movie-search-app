@@ -19,6 +19,7 @@ describe('App', () => {
     it('Movie search results are not displayed when no data', () => {
         expect(wrapper.find('MovieThumbnail').exists()).toEqual(false);
     });
+    // TODO: FIX ME
     // it('fetch movie results when user types in a letter in search field', () => {
     //     const getMovieList = jest.fn();
     //     const search = wrapper.find('input.search-field');
